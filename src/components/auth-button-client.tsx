@@ -2,7 +2,9 @@
 
 import { createClient } from '@/utils/supabase/client'
 import { Session } from '@supabase/supabase-js'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { Button } from './ui/button'
 
 export function AuthButton({ session }: { session: Session | null }) {
   const supabase = createClient()
@@ -23,22 +25,31 @@ export function AuthButton({ session }: { session: Session | null }) {
   }
 
   return (
-    <header className="w-full max-w-xl flex items-center justify-between mt-10">
+    <>
       {session ? (
-        <button
-          onClick={handleSignOut}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Cerrar sesión
-        </button>
+        <div className="flex items-center gap-4">
+          <Link href="/dashboard">
+            <Button className="cursor-pointer" variant={'secondary'}>
+              Ir al panel
+            </Button>
+          </Link>
+          <Button
+            className="cursor-pointer"
+            variant={'secondary'}
+            onClick={handleSignOut}
+          >
+            Cerrar sesión
+          </Button>
+        </div>
       ) : (
-        <button
+        <Button
+          className="cursor-pointer"
+          variant={'secondary'}
           onClick={handleSignIn}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Iniciar sesión
-        </button>
+        </Button>
       )}
-    </header>
+    </>
   )
 }

@@ -1,6 +1,6 @@
+import AuthButtonServer from '@/components/auth-button-server'
 import { ItemsMenuMobile } from '@/components/items-menu-mobile'
 import { MenuList } from '@/components/menu-list'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export const Navbar = () => {
@@ -25,7 +25,7 @@ export const Navbar = () => {
           <MenuList />
         </div>
 
-        <Button>Iniciar sesión</Button>
+        <AuthButtonServer />
 
         <div className="flex sm:hidden">
           <ItemsMenuMobile />
