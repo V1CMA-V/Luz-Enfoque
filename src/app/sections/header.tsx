@@ -11,8 +11,6 @@ export const Navbar = async () => {
     .select('title, body')
     .eq('best_seller', true)
 
-  console.log('services', services)
-
   return (
     <div
       id="navbar"
