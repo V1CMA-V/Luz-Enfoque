@@ -1,9 +1,18 @@
 import AuthButtonServer from '@/components/auth-button-server'
 import { ItemsMenuMobile } from '@/components/items-menu-mobile'
 import { MenuList } from '@/components/menu-list'
+import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 
-export const Navbar = () => {
+export const Navbar = async () => {
+  const supabase = await createClient()
+  const { data: services } = await supabase
+    .from('services')
+    .select('title, body')
+    .eq('best_seller', true)
+
+  console.log('services', services)
+
   return (
     <div
       id="navbar"
@@ -22,7 +31,7 @@ export const Navbar = () => {
         {/* Menu for larger screens */}
 
         <div className="items-center justify-between hidden sm:flex">
-          <MenuList />
+          <MenuList best_sellers={services || []} />
         </div>
 
         <AuthButtonServer />

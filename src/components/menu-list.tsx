@@ -14,28 +14,11 @@ import {
 } from '@/components/ui/navigation-menu'
 import { cn } from '@/lib/utils'
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: 'Café grano',
-    href: '/category/grano',
-    description:
-      'Granos de café enteros que requieren ser molidos para ser consumidos antes de su preparacion. Ideal para personas que disfrutan de la experiencia de moler el café justo antes de su consumo.',
-  },
-  {
-    title: 'Café molido',
-    href: '/category/molido',
-    description:
-      'Café molido es el mejor con una preparación rápida y sencilla. Ideal para personas que disfrutan de la experiencia de moler el café justo antes de su consumo.',
-  },
-  {
-    title: 'Café de capsulas',
-    href: '/category/capsulas',
-    description:
-      'Café en capsulas es el mejor con una preparación rápida y sencilla. Ideal para personas que disfrutan de la experiencia de moler el café justo antes de su consumo.',
-  },
-]
-
-export const MenuList = () => {
+export const MenuList = ({
+  best_sellers,
+}: {
+  best_sellers: { title: string; body: string }[]
+}) => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -76,16 +59,12 @@ export const MenuList = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Servicios</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Servicios populares</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
+              {best_sellers.map((service) => (
+                <ListItem key={service.title} title={service.title}>
+                  {service.body}
                 </ListItem>
               ))}
             </ul>

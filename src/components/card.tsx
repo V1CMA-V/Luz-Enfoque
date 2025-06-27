@@ -6,8 +6,6 @@ export default async function Cards() {
   const supabase = await createClient()
   const { data: services } = await supabase.from('services').select('*')
 
-  console.log('services', services)
-
   return (
     <section className="w-full px-4 py-8 grid md:grid-cols-3 items-center justify-center gap-8">
       {services?.map((service) => (
