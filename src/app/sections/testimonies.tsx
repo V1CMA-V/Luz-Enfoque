@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
-import HeaderSection from '../components/header-sections'
+import HeaderSection from '../../components/header-sections'
 
 export default async function Testimonies() {
   const supabase = await createClient()

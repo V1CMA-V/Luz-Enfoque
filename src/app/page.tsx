@@ -1,4 +1,4 @@
-import AuthButtonServer from './components/auth-button-server'
+import AuthButtonServer from '../components/auth-button-server'
 import Hero from './sections/hero'
 import Testimonies from './sections/testimonies'
 
