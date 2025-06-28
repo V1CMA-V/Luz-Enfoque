@@ -28,7 +28,7 @@ const FormSchema = z.object({
     .array(z.instanceof(File))
     .nonempty('Por favor, selecciona al menos una imagen'),
 
-  orientation: z.enum(['ancha', 'larga'], {
+  orientation: z.enum(['horizontal', 'vertical'], {
     required_error: 'Por favor, selecciona la orientación de las fotos',
   }),
 })
@@ -121,8 +121,8 @@ export default function ImagesForm({ contractId }: { contractId: string }) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="ancha">Ancha</SelectItem>
-                    <SelectItem value="larga">Larga</SelectItem>
+                    <SelectItem value="horizontal">Horizontal</SelectItem>
+                    <SelectItem value="vertical">Vertical</SelectItem>
                   </SelectContent>
                 </Select>
 

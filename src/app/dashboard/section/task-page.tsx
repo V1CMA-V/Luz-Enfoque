@@ -17,6 +17,7 @@ export default async function TaskPage() {
   const { data: contracts } = await supabase
     .from('contracts')
     .select('*, user_id(name, avatar_url), service_id(title, body, slug)')
+    .order('id', { ascending: true })
 
   return (
     <>

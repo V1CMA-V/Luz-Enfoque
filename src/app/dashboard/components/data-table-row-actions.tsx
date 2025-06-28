@@ -1,5 +1,6 @@
 import { Row } from '@tanstack/react-table'
 
+import { Task } from '@/app/dashboard/data/schema'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -12,18 +13,11 @@ import {
 import SelectForm from './forms'
 import ImagesForm from './images-form'
 
-interface RowDataWithIdAndDate {
-  id: string
-  reserv_date: string
+interface DataTableRowActionsProps {
+  row: Row<Task>
 }
 
-interface DataTableRowActionsProps<TData extends RowDataWithIdAndDate> {
-  row: Row<TData>
-}
-
-export function DataTableRowActions<TData extends RowDataWithIdAndDate>({
-  row,
-}: DataTableRowActionsProps<TData>) {
+export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -36,7 +30,8 @@ export function DataTableRowActions<TData extends RowDataWithIdAndDate>({
           <DialogTitle>Edita el servicio</DialogTitle>
           <DialogDescription className="flex flex-col gap-4">
             <p>
-              Recuerda que la fecha de reservacion es {row.original.reserv_date}
+              Recuerda que la fecha de reservacion es{' '}
+              {new Date(row.original.reserv_date).toLocaleDateString()}
             </p>
             <SelectForm contractId={row.original?.id} />
 
