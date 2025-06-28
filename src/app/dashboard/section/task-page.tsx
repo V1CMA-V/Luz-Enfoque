@@ -21,17 +21,17 @@ export default async function TaskPage() {
 
   return (
     <>
-      <div className="w-full flex-1 flex-col gap-8 p-8 flex">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-2">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-2xl font-semibold tracking-tight">
+      <div className="w-full flex-1 flex-col gap-8 p-4 md:p-8 flex">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+          <div className="flex flex-col gap-2 md:gap-1">
+            <h2 className="text-xl md:text-2xl font-semibold tracking-tight">
               Bienvenido de nuevo!
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               Aquí tienes las sesiones pendientes.
             </p>
           </div>
-          <div className="flex items-center gap-2 ">
+          <div className="flex items-center gap-4 md:gap-2">
             <UserNav />
           </div>
         </div>

@@ -26,17 +26,22 @@ export async function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-9 w-9">
+        <Button
+          variant="ghost"
+          className="relative h-8 w-8 rounded-full md:h-10 md:w-10"
+        >
+          <Avatar className="h-9 w-9 md:h-10 md:w-10">
             <AvatarImage src={userData?.avatar_url} alt="@shadcn" />
             <AvatarFallback>{firstLetter}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-48 md:w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm leading-none font-medium">{firstName}</p>
+            <p className="text-xs md:text-sm leading-none font-medium">
+              {firstName}
+            </p>
             <p className="text-muted-foreground text-xs leading-none">
               {userData?.email}
             </p>
