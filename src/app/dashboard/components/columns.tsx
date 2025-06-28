@@ -38,38 +38,63 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tareas" />
+      <DataTableColumnHeader column={column} title="Fecha de Reservada" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
+    cell: ({ row }) => {
+      const date = new Date(row.original.reserv_date)
+
+      return <div className="w-[80px]">{date.toLocaleDateString()}</div>
+    },
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: 'title',
+    accessorKey: 'etiqueta',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Titulo" />
+      <DataTableColumnHeader column={column} title="Etiqueta" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label)
+      const label = labels.find(
+        (label) => label.value === row.original.etiqueta
+      )
 
+      return <>{label && <Badge variant="outline">{label.label}</Badge>}</>
+    },
+  },
+  {
+    accessorKey: 'nota',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Mensaje" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <span className="max-w-[500px] truncate font-medium">
+          {row.original.nota}
+        </span>
+      )
+    },
+  },
+  {
+    accessorKey: 'para',
+    header: () => 'Para:',
+    cell: ({ row }) => {
       return (
         <div className="flex gap-2">
-          {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue('title')}
+            {row.original.user_id.name}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: 'status',
+    accessorKey: 'estatus',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Estatus" />
     ),
     cell: ({ row }) => {
       const status = statuses.find(
-        (status) => status.value === row.getValue('status')
+        (status) => status.value === row.original.estatus
       )
 
       if (!status) {
@@ -90,13 +115,13 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
-    accessorKey: 'priority',
+    accessorKey: 'prioridad',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Prioridad" />
     ),
     cell: ({ row }) => {
       const priority = priorities.find(
-        (priority) => priority.value === row.getValue('priority')
+        (priority) => priority.value === row.original.prioridad
       )
 
       if (!priority) {

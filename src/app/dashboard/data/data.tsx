@@ -4,67 +4,86 @@ import {
   ArrowUp,
   CheckCircle,
   Circle,
-  CircleOff,
   HelpCircle,
-  Timer,
 } from 'lucide-react'
 
 export const labels = [
   {
-    value: 'bug',
-    label: 'Bug',
+    value: 'familiar',
+    label: 'Familiar',
   },
   {
-    value: 'feature',
-    label: 'Feature',
+    value: 'profesional',
+    label: 'Profesional',
   },
   {
-    value: 'documentation',
-    label: 'Documentation',
+    value: 'producto',
+    label: 'Producto',
+  },
+  {
+    value: 'retrato',
+    label: 'Retrato',
+  },
+  {
+    value: 'evento',
+    label: 'Evento',
+  },
+]
+
+export const slugs = [
+  {
+    value: 'familiar',
+    label: 'Familiar',
+  },
+  {
+    value: 'profesional',
+    label: 'Profesional',
+  },
+  {
+    value: 'producto',
+    label: 'Producto',
+  },
+  {
+    value: 'retrato',
+    label: 'Retrato',
+  },
+  {
+    value: 'evento',
+    label: 'Evento',
   },
 ]
 
 export const statuses = [
   {
-    value: 'backlog',
-    label: 'Backlog',
+    value: 'pending',
+    label: 'Pendiente',
     icon: HelpCircle,
   },
   {
-    value: 'todo',
-    label: 'Todo',
+    value: 'progress',
+    label: 'En Progreso',
     icon: Circle,
-  },
-  {
-    value: 'in progress',
-    label: 'In Progress',
-    icon: Timer,
   },
   {
     value: 'done',
     label: 'Done',
     icon: CheckCircle,
   },
-  {
-    value: 'canceled',
-    label: 'Canceled',
-    icon: CircleOff,
-  },
 ]
 
 export const priorities = [
   {
-    label: 'Low',
+    label: 'Baja',
     value: 'low',
     icon: ArrowDown,
   },
   {
-    label: 'Medium',
+    label: 'Media',
     value: 'medium',
     icon: ArrowRight,
   },
   {
-    label: 'High',
+    label: 'Alta',
     value: 'high',
     icon: ArrowUp,
   },
