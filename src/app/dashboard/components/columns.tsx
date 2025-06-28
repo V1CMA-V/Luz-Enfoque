@@ -5,6 +5,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 
+import Link from 'next/link'
 import { labels, priorities, statuses } from '../data/data'
 import { Task } from '../data/schema'
 import { DataTableColumnHeader } from './data-table-column-header'
@@ -80,9 +81,11 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex gap-2">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.original.user_id.name}
-          </span>
+          <Link href={`/users/${row.original.id}`}>
+            <span className="max-w-[500px] truncate font-medium">
+              {row.original.user_id.name}
+            </span>
+          </Link>
         </div>
       )
     },

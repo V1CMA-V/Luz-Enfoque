@@ -46,7 +46,11 @@ export default function ImagesForm({ contractId }: { contractId: string }) {
 
     const uploadedFiles = await Promise.all(
       dataforms.picture.map(async (file): Promise<string | null> => {
-        const filePath = `${file.name}-${Date.now()}`
+        // Separate the file name and extension
+        const fileNameParts = file.name.split('.')
+        const fileExtension = fileNameParts.pop() // Get the last part as the extension
+
+        const filePath = `${fileNameParts}-${Date.now()}.${fileExtension}`
 
         const { error } = await supabase.storage
           .from('contracts-images')
