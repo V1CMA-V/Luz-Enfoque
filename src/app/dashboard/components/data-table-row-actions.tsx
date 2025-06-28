@@ -10,12 +10,18 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import SelectForm from './forms'
+import ImagesForm from './images-form'
 
-interface DataTableRowActionsProps<TData> {
+interface RowDataWithIdAndDate {
+  id: string
+  reserv_date: string
+}
+
+interface DataTableRowActionsProps<TData extends RowDataWithIdAndDate> {
   row: Row<TData>
 }
 
-export function DataTableRowActions<TData>({
+export function DataTableRowActions<TData extends RowDataWithIdAndDate>({
   row,
 }: DataTableRowActionsProps<TData>) {
   return (
@@ -32,7 +38,9 @@ export function DataTableRowActions<TData>({
             <p>
               Recuerda que la fecha de reservacion es {row.original.reserv_date}
             </p>
-            <SelectForm contractId={row.original.id} />
+            <SelectForm contractId={row.original?.id} />
+
+            <ImagesForm contractId={row.original?.id} />
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
