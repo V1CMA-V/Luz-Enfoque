@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { createClient } from '@/utils/supabase/server'
+import { OutButton } from './logout-button'
 
 export async function UserNav() {
   const supabase = await createClient()
@@ -54,7 +55,9 @@ export async function UserNav() {
           <DropdownMenuItem>Configuraciones</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
+        <DropdownMenuItem>
+          <OutButton />
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

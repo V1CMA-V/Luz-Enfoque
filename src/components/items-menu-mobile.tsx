@@ -13,14 +13,14 @@ export const ItemsMenuMobile = () => {
         <Menu />
       </PopoverTrigger>
       <PopoverContent>
-        <Link href="/category/molido" className="block p-2">
-          Café molido
+        <Link href="/" className="block p-2">
+          Inicio
         </Link>
-        <Link href="/category/grano" className="block p-2">
-          Café en grano
+        <Link href="/blog" className="block p-2">
+          Blog
         </Link>
-        <Link href="/category/capsulas" className="block p-2">
-          Café en capsulas
+        <Link href="/portfolio" className="block p-2">
+          Portafolio
         </Link>
       </PopoverContent>
     </Popover>
