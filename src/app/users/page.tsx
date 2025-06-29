@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -11,6 +10,7 @@ import {
 } from '@/components/ui/card'
 import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
+import { UserNav } from '../dashboard/components/user-nav'
 import { statuses } from '../dashboard/data/data'
 
 export default async function UsersPage() {
@@ -29,17 +29,10 @@ export default async function UsersPage() {
     .eq('user_id', user?.id)
     .order('id', { ascending: true })
 
-  console.log('sessions', sessions)
-
   return (
     <div className="w-full flex flex-col gap-8 items-center justify-center">
-      <section className="w-full h-[50dvh] grid place-content-center items-center gap-4 text-center">
-        <Avatar className="h-16 w-16 md:h-20 md:w-20 m-auto">
-          <AvatarImage src={userData?.avatar_url} alt={userData?.full_name} />
-          <AvatarFallback>
-            <span>{userData?.full_name?.charAt(0)}</span>
-          </AvatarFallback>
-        </Avatar>
+      <section className="w-full h-[50dvh] flex flex-col items-center justify-center gap-4 text-center">
+        <UserNav />
         <h1 className="text-2xl font-semibold">Hola {userData?.full_name}</h1>
         <p className="mt-4">
           Aquí puedes ver todas las sesiones que has comprado.

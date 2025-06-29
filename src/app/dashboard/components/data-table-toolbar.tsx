@@ -19,8 +19,6 @@ export function DataTableToolbar<TData>({
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0
 
-  console.log(table.getColumn('status'))
-
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center gap-2">

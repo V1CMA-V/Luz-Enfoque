@@ -29,9 +29,9 @@ export async function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-8 w-8 rounded-full md:h-10 md:w-10"
+          className="relative h-full w-full rounded-full md:h-10 md:w-10"
         >
-          <Avatar className="h-9 w-9 md:h-10 md:w-10">
+          <Avatar className="h-32 w-32">
             <AvatarImage src={userData?.avatar_url} alt="@shadcn" />
             <AvatarFallback>{firstLetter}</AvatarFallback>
           </Avatar>

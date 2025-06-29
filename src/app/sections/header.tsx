@@ -34,7 +34,7 @@ export const Navbar = async () => {
 
         <AuthButtonServer />
 
-        <div className="flex sm:hidden">
+        <div className="flex sm:hidden text-white">
           <ItemsMenuMobile />
         </div>
       </div>
