@@ -66,7 +66,7 @@ export const statuses = [
   },
   {
     value: 'done',
-    label: 'Done',
+    label: 'Completado',
     icon: CheckCircle,
   },
 ]
