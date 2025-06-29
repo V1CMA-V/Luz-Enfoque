@@ -7,5 +7,15 @@ export default async function AuthButtonServer() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  return <AuthButton session={session} />
+  const { data: user } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', session?.user.id)
+
+  return (
+    <AuthButton
+      session={session}
+      role={user && user[0] ? user[0].role : undefined}
+    />
+  )
 }

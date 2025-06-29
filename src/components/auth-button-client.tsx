@@ -5,7 +5,13 @@ import { Session } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { Button } from './ui/button'
 
-export function AuthButton({ session }: { session: Session | null }) {
+export function AuthButton({
+  session,
+  role,
+}: {
+  session: Session | null
+  role: string | null
+}) {
   const supabase = createClient()
 
   const handleSignIn = async () => {
@@ -17,10 +23,12 @@ export function AuthButton({ session }: { session: Session | null }) {
     })
   }
 
+  const url = role === 'admin' ? '/dashboard' : '/user'
+
   return (
     <>
       {session ? (
-        <Link href="/dashboard">
+        <Link href={url}>
           <Button className="cursor-pointer" variant={'secondary'}>
             Ir al panel
           </Button>
