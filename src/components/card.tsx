@@ -1,6 +1,8 @@
 import { createClient } from '@/utils/supabase/server'
 import { Plus } from 'lucide-react'
-import ButtonLink from './button-link'
+import Link from 'next/link'
+import BuyButton from './buy-button'
+import { Button } from './ui/button'
 
 export default async function Cards() {
   const supabase = await createClient()
@@ -44,7 +46,7 @@ export default async function Cards() {
               </strong>{' '}
               mxn
             </p>
-            <ButtonLink href="#">Contratar</ButtonLink>
+            <BuyButton service_id={service.id} slug={service.slug} />
           </footer>
         </article>
       ))}
@@ -63,7 +65,11 @@ export default async function Cards() {
         </main>
 
         <footer className="flex items-center justify-between mt-4">
-          <ButtonLink href="#contactar">Contactar</ButtonLink>
+          <Link href="/#contactar">
+            <Button variant={'outline'} className="cursor-pointer">
+              Comprar
+            </Button>
+          </Link>
         </footer>
       </article>
     </section>

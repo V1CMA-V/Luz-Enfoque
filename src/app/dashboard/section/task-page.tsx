@@ -1,6 +1,16 @@
 import { Metadata } from 'next'
 
+import { Button } from '@/components/ui/button'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
 import { createClient } from '@/utils/supabase/server'
+import BlogForms from '../components/blog-forms'
 import { columns } from '../components/columns'
 import { DataTable } from '../components/data-table'
 import { UserNav } from '../components/user-nav'
@@ -30,6 +40,22 @@ export default async function TaskPage() {
             <p className="text-sm md:text-base text-muted-foreground">
               Aquí tienes las sesiones pendientes.
             </p>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline">Crea un post</Button>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Crea un post</SheetTitle>
+                  <SheetDescription>
+                    Aquí puedes crear un nuevo post para tu blog. Asegúrate de
+                    que el contenido sea claro y conciso.
+                  </SheetDescription>
+                </SheetHeader>
+
+                <BlogForms />
+              </SheetContent>
+            </Sheet>
           </div>
           <div className="flex items-center gap-4 md:gap-2">
             <UserNav />

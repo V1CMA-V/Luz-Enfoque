@@ -31,7 +31,7 @@ export async function UserNav() {
           variant="ghost"
           className="relative h-full w-full rounded-full md:h-10 md:w-10"
         >
-          <Avatar className="h-32 w-32">
+          <Avatar className="h-14 w-14">
             <AvatarImage src={userData?.avatar_url} alt="@shadcn" />
             <AvatarFallback>{firstLetter}</AvatarFallback>
           </Avatar>
