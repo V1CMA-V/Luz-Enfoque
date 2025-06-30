@@ -37,7 +37,9 @@ export async function UserNav() {
       <DropdownMenuContent className="w-48 md:w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-xs md:text-sm leading-none font-medium">asdf</p>
+            <p className="text-xs md:text-sm leading-none font-medium">
+              {userData?.user_metadata?.name}
+            </p>
             <p className="text-muted-foreground text-xs leading-none">
               {userData?.email}
             </p>
