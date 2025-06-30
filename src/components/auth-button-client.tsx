@@ -1,6 +1,5 @@
 'use client'
 
-import { createClient } from '@/utils/supabase/client'
 import { Session } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { Button } from './ui/button'
@@ -12,7 +11,7 @@ export function AuthButton({
   session: Session | null
   role: string | null
 }) {
-  const url = role === 'admin' ? '/dashboard' : '/user'
+  const url = role === 'admin' ? '/dashboard' : '/users'
 
   return (
     <>
