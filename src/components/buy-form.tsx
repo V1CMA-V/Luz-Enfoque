@@ -5,7 +5,6 @@ import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 import { CalendarIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -79,22 +78,27 @@ export function DatePickerForm({
       },
     })
 
+    const { error } = await supabase
+      .from('contracts')
+      .insert([
+        {
+          user_id: user_id,
+          service_id: service_id,
+          reserv_date: contractData.reserv_date,
+          nota: contractData.nota,
+          etiqueta: contractData.slug,
+        },
+      ])
+      .select()
+
+    if (error) {
+      console.error('Error inserting contract:', error)
+      return
+    }
+
     const session = await rest.json()
 
     window.location = session?.url
-
-    toast('You submitted the following values', {
-      description: (
-        <>
-          <p>El id: del usuario es {user_id}</p>
-          <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(contractData, null, 2)}
-            </code>
-          </pre>
-        </>
-      ),
-    })
   }
 
   return (
