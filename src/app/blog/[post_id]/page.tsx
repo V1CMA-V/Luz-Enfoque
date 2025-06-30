@@ -1,10 +1,12 @@
 import { createClient } from '@/utils/supabase/server'
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: { post_id: string }
-}) {
+interface BlogPostPageProps {
+  params: {
+    post_id: string
+  }
+}
+
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const supabase = await createClient()
 
   const { data: post } = await supabase
