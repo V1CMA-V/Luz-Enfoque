@@ -25,6 +25,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
+import { createClient } from '@/utils/supabase/client'
 import { Input } from './ui/input'
 
 const FormSchema = z.object({
@@ -48,13 +49,39 @@ export function DatePickerForm({
   })
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const loadData = {
+    const supabase = await createClient()
+
+    const { data: services } = await supabase
+      .from('services')
+      .select('*')
+      .eq('id', service_id)
+      .single()
+
+    console.log('services', services)
+    const contractData = {
+      title: services?.title,
+      description: services?.body,
+      image: services?.image,
+      price: services?.price,
       user_id: user_id,
+      // para el contrato
       service_id: service_id,
       nota: data.notes,
       slug: slug,
       reserv_date: data.dob.toISOString().split('T')[0], // Formato YYYY-MM-DD
     }
+
+    const rest = await fetch('/api/checkout', {
+      method: 'POST',
+      body: JSON.stringify(contractData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const session = await rest.json()
+
+    window.location = session?.url
 
     toast('You submitted the following values', {
       description: (
@@ -62,7 +89,7 @@ export function DatePickerForm({
           <p>El id: del usuario es {user_id}</p>
           <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
             <code className="text-white">
-              {JSON.stringify(loadData, null, 2)}
+              {JSON.stringify(contractData, null, 2)}
             </code>
           </pre>
         </>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default async function BlogPage() {
   const supabase = await createClient()
 
-  let { data: posts } = await supabase
+  const { data: posts } = await supabase
     .from('posts')
     .select('*, creator_id(name, avatar_url)')
 

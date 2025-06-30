@@ -22,8 +22,8 @@ export default async function BuyButton({
   const supabase = await createClient()
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
   return (
     <Dialog>
@@ -38,11 +38,11 @@ export default async function BuyButton({
             Usted está a punto de comprar {service_name}
           </DialogTitle>
           <DialogDescription>
-            {session ? (
+            {user ? (
               <DatePickerForm
                 service_id={service_id}
                 slug={slug}
-                user_id={session.user.id}
+                user_id={user.id}
               />
             ) : (
               <p className="text-sm text-muted-foreground">
