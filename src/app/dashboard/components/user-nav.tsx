@@ -16,13 +16,10 @@ export async function UserNav() {
   const supabase = await createClient()
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    data: { session },
+  } = await supabase.auth.getSession()
 
-  const userData = user?.user_metadata
-
-  const firstLetter = userData?.name.split(' ')[0][0]
-  const firstName = userData?.name.split(' ')[0]
+  const userData = session?.user
 
   return (
     <DropdownMenu>
@@ -32,17 +29,15 @@ export async function UserNav() {
           className="relative h-full w-full rounded-full md:h-10 md:w-10"
         >
           <Avatar className="h-14 w-14">
-            <AvatarImage src={userData?.avatar_url} alt="@shadcn" />
-            <AvatarFallback>{firstLetter}</AvatarFallback>
+            <AvatarImage src="sdfasdf" alt="@shadcn" />
+            <AvatarFallback>V</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48 md:w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-xs md:text-sm leading-none font-medium">
-              {firstName}
-            </p>
+            <p className="text-xs md:text-sm leading-none font-medium">asdf</p>
             <p className="text-muted-foreground text-xs leading-none">
               {userData?.email}
             </p>

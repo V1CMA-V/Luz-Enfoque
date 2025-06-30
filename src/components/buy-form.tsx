@@ -25,7 +25,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
-import { createClient } from '@/utils/supabase/client'
 import { Input } from './ui/input'
 
 const FormSchema = z.object({
@@ -37,9 +36,11 @@ const FormSchema = z.object({
 
 export function DatePickerForm({
   service_id,
+  user_id,
   slug,
 }: {
   service_id?: string
+  user_id?: string
   slug?: string
 }) {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -47,14 +48,8 @@ export function DatePickerForm({
   })
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const supabase = await createClient()
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-
     const loadData = {
-      user_id: user?.id,
+      user_id: user_id,
       service_id: service_id,
       nota: data.notes,
       slug: slug,
@@ -64,7 +59,7 @@ export function DatePickerForm({
     toast('You submitted the following values', {
       description: (
         <>
-          <p>El id: del usuario es {user?.id}</p>
+          <p>El id: del usuario es {user_id}</p>
           <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
             <code className="text-white">
               {JSON.stringify(loadData, null, 2)}
@@ -83,7 +78,7 @@ export function DatePickerForm({
           name="dob"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>ELija fecha de reserva</FormLabel>
+              <FormLabel>Fecha de reserva</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>

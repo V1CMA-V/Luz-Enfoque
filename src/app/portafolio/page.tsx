@@ -19,8 +19,6 @@ const PortfolioPage = async () => {
     console.error('Error fetching portfolio items:', error)
   }
 
-  console.log('Portfolio items:', portfolioItems)
-
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-32">
       <h1 className="text-xl md:text-4xl font-bold">Portafolio</h1>
@@ -28,7 +26,7 @@ const PortfolioPage = async () => {
       <div className="grid grid-cols-3 gap-4">
         {portfolioItems?.map((item: PortfolioItem) => (
           <div
-            id='portfolio-item'
+            id="portfolio-item"
             key={item.id}
             className="p-4 rounded-2xl shadow-lg bg-white flex flex-col items-center justify-center overflow-hidden"
           >

@@ -84,7 +84,6 @@ export default function BlogForms() {
 
     if (error) {
       toast.error('Error al actualizar el servicio')
-      console.log('Error al actualizar el servicio:', error)
 
       return
     }

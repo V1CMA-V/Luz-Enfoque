@@ -6,16 +6,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { createClient } from '@/utils/supabase/server'
 import { DatePickerForm } from './buy-form'
 import { Button } from './ui/button'
 
 export default async function BuyButton({
   service_id,
+  service_name,
   slug,
 }: {
   service_id?: string
+  service_name?: string
   slug?: string
 }) {
+  const supabase = await createClient()
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -25,9 +34,21 @@ export default async function BuyButton({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>
+            Usted está a punto de comprar {service_name}
+          </DialogTitle>
           <DialogDescription>
-            <DatePickerForm service_id={service_id} slug={slug} />
+            {session ? (
+              <DatePickerForm
+                service_id={service_id}
+                slug={slug}
+                user_id={session.user.id}
+              />
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                Debe iniciar sesión para comprar este servicio.
+              </p>
+            )}
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

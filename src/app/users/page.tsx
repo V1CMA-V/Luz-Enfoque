@@ -17,29 +17,28 @@ export default async function UsersPage() {
   const supabase = await createClient()
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    data: { session },
+  } = await supabase.auth.getSession()
 
-  const userData = user?.user_metadata
+  const userData = session?.user
 
   // Data Sessions
-  const { data: sessions } = await supabase
+  const { data: contracts } = await supabase
     .from('contracts')
     .select('*, service_id(title, body, slug)')
-    .eq('user_id', user?.id)
+    .eq('user_id', userData?.id)
     .order('id', { ascending: true })
 
   return (
     <div className="w-full flex flex-col gap-8 items-center justify-center">
       <section className="w-full h-[50dvh] flex flex-col items-center justify-center gap-4 text-center">
         <UserNav />
-        <h1 className="text-2xl font-semibold">Hola {userData?.full_name}</h1>
         <p className="mt-4">
           Aquí puedes ver todas las sesiones que has comprado.
         </p>
       </section>
 
-      {!user ? (
+      {!contracts ? (
         <>
           <p className="mt-4">Parece ser que no tienes sesiones compradas.</p>
 
@@ -51,20 +50,22 @@ export default async function UsersPage() {
         </>
       ) : (
         <div className="w-full max-w-7xl m-auto grid md:grid-cols-3 gap-4 p-4">
-          {(sessions ?? []).length > 0 ? (
-            (sessions ?? []).map((session) => {
+          {(contracts ?? []).length > 0 ? (
+            (contracts ?? []).map((contract) => {
               const status = statuses.find(
-                (status) => status.value === session.estatus
+                (status) => status.value === contract.status
               )
 
               return (
-                <Card key={session.id}>
+                <Card key={contract.id}>
                   <CardHeader>
-                    <CardTitle>{session.service_id.title}</CardTitle>
-                    <CardDescription>{session.service_id.body}</CardDescription>
+                    <CardTitle>{contract.service_id.title}</CardTitle>
+                    <CardDescription>
+                      {contract.service_id.body}
+                    </CardDescription>
                     <CardAction>
                       <Link
-                        href={`/users/${session.id}`}
+                        href={`/users/${contract.id}`}
                         className="text-blue-500 hover:underline"
                       >
                         <Button variant="link" className="cursor-pointer">
@@ -74,7 +75,7 @@ export default async function UsersPage() {
                     </CardAction>
                   </CardHeader>
                   <CardContent>
-                    <p>Fecha de la sesión: {session.reserv_date}</p>
+                    <p>Fecha de la sesión: {contract.reserv_date}</p>
                   </CardContent>
                   <CardFooter>
                     {status ? (

@@ -46,7 +46,11 @@ export default async function Cards() {
               </strong>{' '}
               mxn
             </p>
-            <BuyButton service_id={service.id} slug={service.slug} />
+            <BuyButton
+              service_id={service.id}
+              slug={service.slug}
+              service_name={service.title}
+            />
           </footer>
         </article>
       ))}
