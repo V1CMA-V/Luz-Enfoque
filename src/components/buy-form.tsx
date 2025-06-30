@@ -56,7 +56,6 @@ export function DatePickerForm({
       .eq('id', service_id)
       .single()
 
-    console.log('services', services)
     const contractData = {
       title: services?.title,
       description: services?.body,

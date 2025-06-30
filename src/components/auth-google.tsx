@@ -7,9 +7,7 @@ export default function AuthGoogle() {
   const supabase = createClient()
 
   const handleSignIn = async () => {
-    console.log('Iniciando sesión con Google...')
-
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: 'http://localhost:3000/auth/callback',
@@ -17,9 +15,7 @@ export default function AuthGoogle() {
     })
 
     if (error) {
-      console.error('Error al iniciar sesión con Google:', error)
-    } else {
-      console.log('Sesión iniciada con éxito:', data)
+      console.error('Error al iniciar sesión con Google:')
     }
   }
 
